@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cac.webWork.dao.CurriculumTblMapper">
+  <resultMap id="BaseResultMap" type="com.cac.webWork.model.CurriculumTbl">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="createdate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="createuesr" jdbcType="VARCHAR" property="createuesr" />
+    <result column="teacherid" jdbcType="INTEGER" property="teacherid" />
+    <result column="teachername" jdbcType="VARCHAR" property="teachername" />
+    <result column="gradeno" jdbcType="VARCHAR" property="gradeno" />
+    <result column="classno" jdbcType="VARCHAR" property="classno" />
+    <result column="starttime" jdbcType="TIMESTAMP" property="starttime" />
+    <result column="endtime" jdbcType="TIMESTAMP" property="endtime" />
+    <result column="province" jdbcType="VARCHAR" property="province" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+    <result column="district" jdbcType="VARCHAR" property="district" />
+    <result column="fulladdress" jdbcType="VARCHAR" property="fulladdress" />
+    <result column="schoolid" jdbcType="INTEGER" property="schoolid" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="classstatus" jdbcType="INTEGER" property="classstatus" />
+    <result column="coursename" jdbcType="VARCHAR" property="coursename" />
+    <result column="coursecontents" jdbcType="VARCHAR" property="coursecontents" />
+    <result column="searchcontent" jdbcType="VARCHAR" property="searchcontent" />
+    <result column="framefacecount" jdbcType="INTEGER" property="framefacecount" />
+    <result column="seniority" jdbcType="VARCHAR" property="seniority" />
+    <result column="education" jdbcType="VARCHAR" property="education" />
+    <result column="classNature" jdbcType="VARCHAR" property="classnature" />
+    <result column="teacherType" jdbcType="VARCHAR" property="teachertype" />
+    <result column="curriculumType" jdbcType="VARCHAR" property="curriculumtype" />
+    <result column="emotionTable" jdbcType="VARCHAR" property="emotiontable" />
+    <result column="notemsg" jdbcType="VARCHAR" property="notemsg" />
+    <result column="curriculumLevel" jdbcType="INTEGER" property="curriculumlevel" />
+    <result column="personTable" jdbcType="VARCHAR" property="persontable" />
+    <result column="curriculumStarts" jdbcType="INTEGER" property="curriculumstarts" />
+    <result column="analysisip" jdbcType="VARCHAR" property="analysisip" />
+    <result column="classNoApi" jdbcType="VARCHAR" property="classnoapi" />
+    <result column="classid" jdbcType="INTEGER" property="classid" />
+    <result column="classname" jdbcType="VARCHAR" property="classname" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, createdate, createuesr, teacherid, teachername, gradeno, classno, starttime, 
+    endtime, province, city, district, fulladdress, schoolid, school, classstatus, coursename, 
+    coursecontents, searchcontent, framefacecount, seniority, education, classNature, 
+    teacherType, curriculumType, emotionTable, notemsg, curriculumLevel, personTable, 
+    curriculumStarts, analysisip, classNoApi, classid, classname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from curriculum_tbl
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from curriculum_tbl
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cac.webWork.model.CurriculumTbl">
+    insert into curriculum_tbl (id, name, createdate, 
+      createuesr, teacherid, teachername, 
+      gradeno, classno, starttime, 
+      endtime, province, city, 
+      district, fulladdress, schoolid, 
+      school, classstatus, coursename, 
+      coursecontents, searchcontent, framefacecount, 
+      seniority, education, classNature, 
+      teacherType, curriculumType, emotionTable, 
+      notemsg, curriculumLevel, personTable, 
+      curriculumStarts, analysisip, classNoApi, 
+      classid, classname)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{createuesr,jdbcType=VARCHAR}, #{teacherid,jdbcType=INTEGER}, #{teachername,jdbcType=VARCHAR}, 
+      #{gradeno,jdbcType=VARCHAR}, #{classno,jdbcType=VARCHAR}, #{starttime,jdbcType=TIMESTAMP}, 
+      #{endtime,jdbcType=TIMESTAMP}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{district,jdbcType=VARCHAR}, #{fulladdress,jdbcType=VARCHAR}, #{schoolid,jdbcType=INTEGER}, 
+      #{school,jdbcType=VARCHAR}, #{classstatus,jdbcType=INTEGER}, #{coursename,jdbcType=VARCHAR}, 
+      #{coursecontents,jdbcType=VARCHAR}, #{searchcontent,jdbcType=VARCHAR}, #{framefacecount,jdbcType=INTEGER}, 
+      #{seniority,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{classnature,jdbcType=VARCHAR}, 
+      #{teachertype,jdbcType=VARCHAR}, #{curriculumtype,jdbcType=VARCHAR}, #{emotiontable,jdbcType=VARCHAR}, 
+      #{notemsg,jdbcType=VARCHAR}, #{curriculumlevel,jdbcType=INTEGER}, #{persontable,jdbcType=VARCHAR}, 
+      #{curriculumstarts,jdbcType=INTEGER}, #{analysisip,jdbcType=VARCHAR}, #{classnoapi,jdbcType=VARCHAR}, 
+      #{classid,jdbcType=INTEGER}, #{classname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cac.webWork.model.CurriculumTbl">
+    insert into curriculum_tbl
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="createdate != null">
+        createdate,
+      </if>
+      <if test="createuesr != null">
+        createuesr,
+      </if>
+      <if test="teacherid != null">
+        teacherid,
+      </if>
+      <if test="teachername != null">
+        teachername,
+      </if>
+      <if test="gradeno != null">
+        gradeno,
+      </if>
+      <if test="classno != null">
+        classno,
+      </if>
+      <if test="starttime != null">
+        starttime,
+      </if>
+      <if test="endtime != null">
+        endtime,
+      </if>
+      <if test="province != null">
+        province,
+      </if>
+      <if test="city != null">
+        city,
+      </if>
+      <if test="district != null">
+        district,
+      </if>
+      <if test="fulladdress != null">
+        fulladdress,
+      </if>
+      <if test="schoolid != null">
+        schoolid,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="classstatus != null">
+        classstatus,
+      </if>
+      <if test="coursename != null">
+        coursename,
+      </if>
+      <if test="coursecontents != null">
+        coursecontents,
+      </if>
+      <if test="searchcontent != null">
+        searchcontent,
+      </if>
+      <if test="framefacecount != null">
+        framefacecount,
+      </if>
+      <if test="seniority != null">
+        seniority,
+      </if>
+      <if test="education != null">
+        education,
+      </if>
+      <if test="classnature != null">
+        classNature,
+      </if>
+      <if test="teachertype != null">
+        teacherType,
+      </if>
+      <if test="curriculumtype != null">
+        curriculumType,
+      </if>
+      <if test="emotiontable != null">
+        emotionTable,
+      </if>
+      <if test="notemsg != null">
+        notemsg,
+      </if>
+      <if test="curriculumlevel != null">
+        curriculumLevel,
+      </if>
+      <if test="persontable != null">
+        personTable,
+      </if>
+      <if test="curriculumstarts != null">
+        curriculumStarts,
+      </if>
+      <if test="analysisip != null">
+        analysisip,
+      </if>
+      <if test="classnoapi != null">
+        classNoApi,
+      </if>
+      <if test="classid != null">
+        classid,
+      </if>
+      <if test="classname != null">
+        classname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuesr != null">
+        #{createuesr,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherid != null">
+        #{teacherid,jdbcType=INTEGER},
+      </if>
+      <if test="teachername != null">
+        #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeno != null">
+        #{gradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="classno != null">
+        #{classno,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="province != null">
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="fulladdress != null">
+        #{fulladdress,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolid != null">
+        #{schoolid,jdbcType=INTEGER},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="classstatus != null">
+        #{classstatus,jdbcType=INTEGER},
+      </if>
+      <if test="coursename != null">
+        #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="coursecontents != null">
+        #{coursecontents,jdbcType=VARCHAR},
+      </if>
+      <if test="searchcontent != null">
+        #{searchcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="framefacecount != null">
+        #{framefacecount,jdbcType=INTEGER},
+      </if>
+      <if test="seniority != null">
+        #{seniority,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="classnature != null">
+        #{classnature,jdbcType=VARCHAR},
+      </if>
+      <if test="teachertype != null">
+        #{teachertype,jdbcType=VARCHAR},
+      </if>
+      <if test="curriculumtype != null">
+        #{curriculumtype,jdbcType=VARCHAR},
+      </if>
+      <if test="emotiontable != null">
+        #{emotiontable,jdbcType=VARCHAR},
+      </if>
+      <if test="notemsg != null">
+        #{notemsg,jdbcType=VARCHAR},
+      </if>
+      <if test="curriculumlevel != null">
+        #{curriculumlevel,jdbcType=INTEGER},
+      </if>
+      <if test="persontable != null">
+        #{persontable,jdbcType=VARCHAR},
+      </if>
+      <if test="curriculumstarts != null">
+        #{curriculumstarts,jdbcType=INTEGER},
+      </if>
+      <if test="analysisip != null">
+        #{analysisip,jdbcType=VARCHAR},
+      </if>
+      <if test="classnoapi != null">
+        #{classnoapi,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null">
+        #{classid,jdbcType=INTEGER},
+      </if>
+      <if test="classname != null">
+        #{classname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cac.webWork.model.CurriculumTbl">
+    update curriculum_tbl
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        createdate = #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createuesr != null">
+        createuesr = #{createuesr,jdbcType=VARCHAR},
+      </if>
+      <if test="teacherid != null">
+        teacherid = #{teacherid,jdbcType=INTEGER},
+      </if>
+      <if test="teachername != null">
+        teachername = #{teachername,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeno != null">
+        gradeno = #{gradeno,jdbcType=VARCHAR},
+      </if>
+      <if test="classno != null">
+        classno = #{classno,jdbcType=VARCHAR},
+      </if>
+      <if test="starttime != null">
+        starttime = #{starttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endtime != null">
+        endtime = #{endtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="province != null">
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null">
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="district != null">
+        district = #{district,jdbcType=VARCHAR},
+      </if>
+      <if test="fulladdress != null">
+        fulladdress = #{fulladdress,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolid != null">
+        schoolid = #{schoolid,jdbcType=INTEGER},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="classstatus != null">
+        classstatus = #{classstatus,jdbcType=INTEGER},
+      </if>
+      <if test="coursename != null">
+        coursename = #{coursename,jdbcType=VARCHAR},
+      </if>
+      <if test="coursecontents != null">
+        coursecontents = #{coursecontents,jdbcType=VARCHAR},
+      </if>
+      <if test="searchcontent != null">
+        searchcontent = #{searchcontent,jdbcType=VARCHAR},
+      </if>
+      <if test="framefacecount != null">
+        framefacecount = #{framefacecount,jdbcType=INTEGER},
+      </if>
+      <if test="seniority != null">
+        seniority = #{seniority,jdbcType=VARCHAR},
+      </if>
+      <if test="education != null">
+        education = #{education,jdbcType=VARCHAR},
+      </if>
+      <if test="classnature != null">
+        classNature = #{classnature,jdbcType=VARCHAR},
+      </if>
+      <if test="teachertype != null">
+        teacherType = #{teachertype,jdbcType=VARCHAR},
+      </if>
+      <if test="curriculumtype != null">
+        curriculumType = #{curriculumtype,jdbcType=VARCHAR},
+      </if>
+      <if test="emotiontable != null">
+        emotionTable = #{emotiontable,jdbcType=VARCHAR},
+      </if>
+      <if test="notemsg != null">
+        notemsg = #{notemsg,jdbcType=VARCHAR},
+      </if>
+      <if test="curriculumlevel != null">
+        curriculumLevel = #{curriculumlevel,jdbcType=INTEGER},
+      </if>
+      <if test="persontable != null">
+        personTable = #{persontable,jdbcType=VARCHAR},
+      </if>
+      <if test="curriculumstarts != null">
+        curriculumStarts = #{curriculumstarts,jdbcType=INTEGER},
+      </if>
+      <if test="analysisip != null">
+        analysisip = #{analysisip,jdbcType=VARCHAR},
+      </if>
+      <if test="classnoapi != null">
+        classNoApi = #{classnoapi,jdbcType=VARCHAR},
+      </if>
+      <if test="classid != null">
+        classid = #{classid,jdbcType=INTEGER},
+      </if>
+      <if test="classname != null">
+        classname = #{classname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cac.webWork.model.CurriculumTbl">
+    update curriculum_tbl
+    set name = #{name,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      createuesr = #{createuesr,jdbcType=VARCHAR},
+      teacherid = #{teacherid,jdbcType=INTEGER},
+      teachername = #{teachername,jdbcType=VARCHAR},
+      gradeno = #{gradeno,jdbcType=VARCHAR},
+      classno = #{classno,jdbcType=VARCHAR},
+      starttime = #{starttime,jdbcType=TIMESTAMP},
+      endtime = #{endtime,jdbcType=TIMESTAMP},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      district = #{district,jdbcType=VARCHAR},
+      fulladdress = #{fulladdress,jdbcType=VARCHAR},
+      schoolid = #{schoolid,jdbcType=INTEGER},
+      school = #{school,jdbcType=VARCHAR},
+      classstatus = #{classstatus,jdbcType=INTEGER},
+      coursename = #{coursename,jdbcType=VARCHAR},
+      coursecontents = #{coursecontents,jdbcType=VARCHAR},
+      searchcontent = #{searchcontent,jdbcType=VARCHAR},
+      framefacecount = #{framefacecount,jdbcType=INTEGER},
+      seniority = #{seniority,jdbcType=VARCHAR},
+      education = #{education,jdbcType=VARCHAR},
+      classNature = #{classnature,jdbcType=VARCHAR},
+      teacherType = #{teachertype,jdbcType=VARCHAR},
+      curriculumType = #{curriculumtype,jdbcType=VARCHAR},
+      emotionTable = #{emotiontable,jdbcType=VARCHAR},
+      notemsg = #{notemsg,jdbcType=VARCHAR},
+      curriculumLevel = #{curriculumlevel,jdbcType=INTEGER},
+      personTable = #{persontable,jdbcType=VARCHAR},
+      curriculumStarts = #{curriculumstarts,jdbcType=INTEGER},
+      analysisip = #{analysisip,jdbcType=VARCHAR},
+      classNoApi = #{classnoapi,jdbcType=VARCHAR},
+      classid = #{classid,jdbcType=INTEGER},
+      classname = #{classname,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

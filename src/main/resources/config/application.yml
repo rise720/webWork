@@ -1,0 +1,134 @@
+## 服务端口号
+server:
+    ## 使用HTTPS 默认端口443
+#   port: 443
+#   ssl:
+#      key-store: classpath:config/keystore.p12
+#      key-store-password: abc123!
+#      keyStoreType: PKCS12
+    ## 使用HTTP 默认端口号 80
+    port: 8081
+## 日志配置文件位置   
+logging:
+   config: classpath:config/log4j2.xml
+
+dubbo:
+   application:    #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者
+      name: Provide
+   #registry: N/A 未注册
+   registry:       #注册中心配置，用于配置连接注册中心相关信息
+      address: 172.28.176.120:2181
+   protocol:       #协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受
+      name: dubbo
+      port: 20880
+   monitor:
+      protocol: registry
+
+spring:
+   http:
+      encoding:
+         charset: UTF-8
+   ## Redis配置
+   redis:
+      # Redis数据库索引（默认为0）
+      database: 0
+      # Redis服务器地址
+      host: localhost
+      # Redis服务器连接端口
+      port: 6379
+      # Redis服务器连接密码（默认为空）
+      password:
+      lettuce:
+         pool:
+            # 连接池最大连接数（使用负值表示没有限制） 默认 8
+            max-active: 8
+            # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+            max-wait: -1
+            # 连接池中的最大空闲连接 默认 8
+            max-idle: 8
+            # 连接池中的最小空闲连接 默认 0
+            min-idle: 0
+   ## MQ配置
+   application:
+      name: vitualHost
+   rabbitmq:
+      host: 172.28.176.120
+      port: 5672
+      username: admin
+      password: admin
+   # 邮箱配置
+   mail:
+      host: pop.163.com
+      username: jintestmail@163.com
+      password: P@ssw0rd
+      default-encoding: UTF-8
+   ## dubbo 配置，说明此项目是dubbo服务提供端
+#   dubbo:
+#      application:    #应用配置，用于配置当前应用信息，不管该应用是提供者还是消费者
+#         name: Provide
+      #registry: N/A 未注册
+#      registry:       #注册中心配置，用于配置连接注册中心相关信息
+#         address: zookeeper://172.28.176.120:2181
+#      protocol:       #协议配置，用于配置提供服务的协议信息，协议由提供方指定，消费方被动接受
+#         name: dubbo
+#         port: 20880
+      
+   ##-------------------------数据库相关开始--------------------------##
+   datasource:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://172.28.175.89:3306/webworkdb?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+      username: emotion
+      password: emotion
+      #Spring Boot的数据库连接池默认使用HikariDataSource，高性能，无需使用Druid
+      type: com.zaxxer.hikari.HikariDataSource
+      ##  Hikari 连接池配置
+      hikari:   
+         ## 连接池名字
+         pool-name: MyHikariCP
+         ## 最小空闲连接数量
+         minimum-idle: 5
+         ## 空闲连接存活最大时间，默认600000（10分钟）
+         idle-timeout: 180000
+         ## 连接池最大连接数，默认是10
+         maximum-pool-size: 10
+         ## 从池返回的连接的默认自动提交行为,默认值：true
+         auto-commit: true
+         ## 池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+         max-lifetime: 1800000
+         ## 数据库连接超时时间,默认30秒，即30000
+         connection-timeout: 30000
+         
+   ##Spring JPA 是利用 Hibernate 生成各种自动化的 sql，简单的增删改查不需要手写，Spring 内部已经封装实现
+   #jpa:
+   #   database: MYSQL
+   #   hibernate:
+   #      ## 自动创建、更新、验证数据库表结构
+   #      #update：最常用的属性，第一次加载 hibernate 时根据 model 类会自动建立起表的结构，以后根据 model 类自动更新表结构，即使表结构改变了但表中的行仍然存在不会删除以前的行。
+   #      #validate ：每次加载 hibernate 时，验证创建数据库表结构，只会和数据库中的表进行比较，不会创建新表，但是会插入新值。
+   #      ddl-auto: update
+   #      ## hibernate使用的数据库方言
+   #      dialect: org.hibernate.dialect.MySQL5Dialect
+   #   ## 是否打印出自动生成的 SQL，方便调试的时候查看
+   #   show-sql: true
+
+## 多数据源配置   
+slave:
+   datasource:
+      names: ds1,ds2
+      ds1:
+         driver-class-name: com.mysql.cj.jdbc.Driver
+         url: jdbc:mysql://172.28.175.89:3306/camemotion?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+         username: emotion
+         password: emotion
+      ds2:
+         driver-class-name: com.mysql.cj.jdbc.Driver
+         url: jdbc:mysql://172.28.175.89:3306/camemotionapi?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2B8
+         username: emotion
+         password: emotion
+         
+##mybatis配置
+mybatis:
+   #在配置的包中自动扫描持久层POJO
+   config-location: classpath:config/mybatis-config.xml
+   mapper-locations: classpath:com/cac/webWork/mapper/*.xml
+   ##-------------------------数据库相关结束--------------------------##
